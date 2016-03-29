@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+
+  mount Sidekiq::Web, at: '/sidekiq'
+
+  resources :auctions,only:[:index, :new, :create, :show] do
+    resources :bids, only: [:create]
+    resources :publishings, only: [:create]
+  end
+
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  resources :my_auctions, only:[:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'auctions#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

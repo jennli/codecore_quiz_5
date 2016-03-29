@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Auctions</h1>
+
+  <% @auctions.each do |a| %>
+  <div class='well'>
+    <%= link_to a.title.upcase, a %>
+    <p> Current highest bid: <%= a.max_bid %></p>
+  </div>
+  <% end %>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <h2><%= @auction.title %> (Current highest bid: <%= @auction.max_bid %>)</h2>
+  <p><%= @auction.details %></p>
+  <p><%= @auction.price %></p>
+  <%= @auction.publish_button %>
+  <%= @auction.state_label %>
+
+  <div class="container">
+    <h3>Bids</h3>
+    <% @bids.each do |b| %>
+    <div>
+      <%= number_to_currency(b.amount) %>
+      <%= b.user.full_name%>
+    </div>
+    <% end %>
+  </div>
+<hr />
+
+  <% if can? :create, @auction.bids.new %>
+  <div class="container bids">
+    <%= simple_form_for [@auction, Bid.new] do |f| %>
+    <%= f.text_field :amount %>
+    <%= f.submit %>
+    <% end %>
+  </div>
+  <% end %>
+</div>

@@ -1,27 +1,22 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* must run the following for the app to work:
 
-Things you may want to cover:
+1. Must migrate database
+```shell
+bin/rake db:migrate
+```
 
-* Ruby version
+2. redis server must be running: 
+```shell
+redis-server
+```
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run

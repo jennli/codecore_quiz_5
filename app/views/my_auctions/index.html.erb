@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>My Auctions</h1>
+  <% @auctions.each do |a| %>
+  <div class="well">
+    <%= link_to a.title, a %>
+    <span class="label label-default"><%= a.aasm_state %></span>
+    <p><%= a.details%></p>
+  </div>
+  <% end %>
+</div>

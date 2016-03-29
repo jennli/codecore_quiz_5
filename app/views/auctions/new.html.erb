@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>New Auction</h2>
+  <%= simple_form_for(@auction, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :title, label: "Title", input_html: {class: "small-field"} %>
+  <%= f.input :details %>
+  <%= f.input :price, as: :string %>
+
+  <%= f.input :end_date %>
+
+  <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
