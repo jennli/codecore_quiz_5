@@ -1,8 +1,8 @@
 <div class="container">
   <h2>Recent Bids:</h2>
-  
-  <% @bids.each do |b| %>
-    <%= render "bids/bid", bid: b %>
-  <% end %>
 
+  <% @bids.each do |b| %>
+    <%=link_to b.auction.title, auction_path(b.auction) %>
+    <%= render "bids/bid", bid: b %>
+    <% end %>
 </div>
