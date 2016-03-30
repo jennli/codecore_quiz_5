@@ -5,7 +5,7 @@ class Auctions::PublishAuction
 
   def call
     if auction.publish!
-      DetermineAuctionStateJob.set(wait_until: auction.end_date).perform_later(auction)
+      DetermineAuctionStateJob.set(wait_until: auction.end_date).perform_now(auction)
       true
     else
       false

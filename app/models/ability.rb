@@ -6,8 +6,8 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
 
-    can :create, Bid do |bid|
-      bid.auction.user != user
+    can :manage, Auction do |auction|
+      auction.user == user
     end
 
     #   if user.admin?

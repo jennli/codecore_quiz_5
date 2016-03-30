@@ -19,8 +19,12 @@ class AuctionDecorator < Draper::Decorator
     h.number_to_currency object.price
   end
 
+  def end_date
+    object.end_date.strftime("%m-%d-%Y")
+  end
+
   def state_label
-    bootstrap_classes = {"published" => "label label-success", "draft" => "label label-default", "reserve_met" => "label label-success", "won" => "label label-success", "canceled" => "label label-warning", "reserve_not_met" => "label label-error"}
+    bootstrap_classes = {"published" => "label label-success", "draft" => "label label-default", "reserve_met" => "label label-success", "won" => "label label-success", "canceled" => "label label-warning", "reserve_not_met" => "label label-default"}
     h.content_tag :div, class:"#{bootstrap_classes[object.aasm_state]}" do
       object.aasm_state
     end

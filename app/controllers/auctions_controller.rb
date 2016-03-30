@@ -1,9 +1,9 @@
 class AuctionsController < ApplicationController
-  before_action :authenticate_user!, only:[:new, :create]
+  before_action :authenticate_user!, only:[:new, :create, :show]
   before_action :find_auction, only:[:show]
 
   def index
-    @auctions = Auction.order("created_at ASC").published
+    @auctions = Auction.where("aasm_state != ?" , "draft")
   end
 
   def new
@@ -11,7 +11,7 @@ class AuctionsController < ApplicationController
   end
 
   def create
-    @auction = Auction.create auction_params
+    @auction = Auction.new auction_params
     @auction.user = current_user
     if @auction.save
       redirect_to @auction, notice:"auction_created"
@@ -22,7 +22,11 @@ class AuctionsController < ApplicationController
   end
 
   def show
-    @bids = @auction.bids.order("created_at DESC")
+    if @auction.aasm_state == "draft" && @auction.user != current_user
+      redirect_to root_path, alert:"you don't have permission to view this auction"
+    else
+      @bids = @auction.bids.order("created_at DESC")
+    end
   end
 
   private

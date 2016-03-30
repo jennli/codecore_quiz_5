@@ -14,7 +14,7 @@ class Auction < ActiveRecord::Base
   end
 
   def max_bid
-    bids.size > 0 ? bids.order("amount DESC").first.amount : 0
+    bids.size > 1 ? bids.order("amount DESC").first.amount : 0
   end
 
   # setting the whiny_transitions: false option makes it so that it won't

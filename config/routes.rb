@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :publishings, only: [:create]
   end
 
+  resources :bids, only:[:index]
+
   devise_for :users, controllers: { registrations: 'registrations' }
 
   resources :my_auctions, only:[:index]

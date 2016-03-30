@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Recent Bids:</h2>
+  
+  <% @bids.each do |b| %>
+    <%= render "bids/bid", bid: b %>
+  <% end %>
+
+</div>
