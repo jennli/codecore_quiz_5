@@ -5,7 +5,10 @@
   <%= f.input :details %>
   <%= f.input :price, as: :string %>
 
-  <%= f.input :end_date %>
+  <div class='row datetimerange'>
+
+    <%= f.input :end_date, as: :datetime_picker, wrapper: :ranged_datetime, class:"datetimepicker" %>
+  </div>
 
   <%= f.submit class: "btn btn-primary" %>
   <% end %>
