@@ -5,6 +5,7 @@ class Auction < ActiveRecord::Base
 
   validates :title, presence:true
   validates :end_date, presence:true
+  validates :price, presence:true
   validate :end_date_cannot_be_in_the_past
 
   def end_date_cannot_be_in_the_past

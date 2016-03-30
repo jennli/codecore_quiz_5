@@ -3,11 +3,11 @@
 * must run the following for the app to work:
 
 1. Must migrate database
-```shell
+```
 bin/rake db:migrate
 ```
 
-2. redis server must be running: 
+2. redis server must be running:
 ```shell
 redis-server
 ```
