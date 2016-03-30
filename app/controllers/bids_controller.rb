@@ -10,13 +10,17 @@ class BidsController < ApplicationController
     if current_user != @auction.user
       @bid = @auction.bids.new bid_params
       @bid.user = current_user
-      if @bid.save
-        DetermineAuctionStateJob.set(wait_until: @auction.end_date).perform_now(Auction.find(@auction.id))
-        redirect_to @auction, notice:"bid created"
-      else
-        redirect_to @auction, alert: "#{@bid.errors.full_messages.join(",")}"
-      end
 
+      respond_to do |format|
+        if @bid.save
+          DetermineAuctionStateJob.set(wait_until: @auction.end_date).perform_now(Auction.find(@auction.id))
+          format.js { render :bid_create_success }
+          format.html {redirect_to @auction, notice:"bid created"}
+        else
+          format.js { render :bid_create_failure }
+          format.html {redirect_to @auction, alert: "#{@bid.errors.full_messages.join(",")}"}
+        end
+      end
     else
       redirect_to @auction, alert: "cant bid if you own this auction!"
     end

@@ -1,5 +1,5 @@
 <div class="container">
-  <h2><%= @auction.title %> (Current highest bid: <%= @auction.max_bid %>)</h2>
+  <h2><%= @auction.title %> (Current highest bid: $<%= @auction.max_bid %>)</h2>
   <p>Created by: <%= @auction.user.full_name %></p>
   <p>Detail: <%= @auction.details %></p>
   <p>Price: <%= @auction.price %></p>
@@ -16,19 +16,23 @@
   <% else %>
   <br />
   <br />
+  <div class="new-bid">
+    <%= render "bids/form" %>
+    <!-- <label for="new-bid">Your bid: $</label>
+    <input type="text" id="new-bid" />
+    <input type="submit" id="bid-submit" data-aid="<%= @auction.id %>" value="Bid!" /> -->
 
-    <%= simple_form_for [@auction, Bid.new] do |f| %>
-    $<%= f.text_field :amount %>
-    <%= f.submit "Bid!" %>
-    <% end %>
+  </div>
 
   <% end %>
 
   <hr />
 
   <h3>Bids</h3>
-  <% @bids.each do |b| %>
-  <%= render "bids/bid", bid: b %>
-  <% end %>
+  <div class="bids">
+    <% @bids.each do |b| %>
+    <%= render "bids/bid", bid: b %>
+    <% end %>
+  </div>
 
 </div>

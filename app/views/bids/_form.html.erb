@@ -1,0 +1,9 @@
+<div class="bid-form">
+
+  <%= simple_form_for [@auction, Bid.new] , remote:true do |f| %>
+  <label for="amount">Your Bid: </label>
+  $<%= f.text_field :amount, id:"amount" %>
+  <%= f.submit "Bid!", class:"btn btn-warning" %>
+  <% end %>
+
+</div>

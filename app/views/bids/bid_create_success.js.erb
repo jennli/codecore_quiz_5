@@ -1,0 +1,3 @@
+$('<%= j render "bid", bid: @bid %>').hide().prependTo('.bids').slideDown();
+$("input[type='text']").val("");
+<% @bid = Bid.new %>
